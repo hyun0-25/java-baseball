@@ -1,15 +1,18 @@
 package baseball;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class GamePlayer {
+    private String userinput;
 
     public List<Integer> userInput() {
-        Scanner sc = new Scanner(System.in);
-        int input = sc.nextInt();
+        userinput = Console.readLine();
+        int input = Integer.parseInt(userinput);
         return input_to_List(input);
     }
 
@@ -21,5 +24,10 @@ public class GamePlayer {
         input %= 10;
         inputlist.add(input);
         return inputlist;
+    }
+
+    public int restart(){
+        userinput = Console.readLine();
+        return Integer.parseInt(userinput);
     }
 }
