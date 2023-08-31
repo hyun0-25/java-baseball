@@ -24,7 +24,7 @@ public class Game {
         restart=1;
         while(strikeCount!=3){
             host.inputMessage();
-            baseballCount(player.userInput());
+            baseballCount(player.userInput(host));
             if(ballCount==0 && strikeCount==0) host.nothingMessage();
             else {
                 host.ballMessage(ballCount);
