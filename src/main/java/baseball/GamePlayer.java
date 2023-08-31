@@ -1,5 +1,6 @@
 package baseball;
 
+import View.GameHost;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
@@ -10,20 +11,25 @@ import java.util.stream.Stream;
 public class GamePlayer {
     private String userinput;
 
-    public List<Integer> userInput() {
+    public List<Integer> userInput(GameHost gamehost) {
         userinput = Console.readLine();
-        int input = Integer.parseInt(userinput);
-        return input_to_List(input);
+        return input_to_List(userinput, gamehost);
     }
 
-    public List<Integer> input_to_List(int input) {
-        List<Integer> inputlist = new ArrayList<>();
-        inputlist.add(input/100);
-        input %= 100;
-        inputlist.add(input/10);
-        input %= 10;
-        inputlist.add(input);
-        return inputlist;
+    public List<Integer> input_to_List(String string, GameHost gh) {
+        if (string.length()>3) gh.exceedLengthError();
+        List<Integer> inputnumber = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++){
+            Character charnumber = string.charAt(i);
+            if(!Character.isDigit(charnumber)) gh.notnumberError();
+
+            int intnumber = Integer.parseInt(charnumber.toString());
+            if(intnumber==0) gh.zeronumberError();
+            if(inputnumber.contains(intnumber)) gh.duplicationError();
+            inputnumber.add(intnumber);
+        }
+        return inputnumber;
     }
 
     public int restart(){
