@@ -8,7 +8,10 @@ public class GameHost {
     private static final String BALL_NUMBER_MESSAGE = "%d볼 ";
     private static final String STRIKE_NUMBER_MESSAGE = "%d스트라이크";
     private static final String STRIKE_THREE_MESSAGE = "\n3개의 숫자를 모두 맞히셨습니다! 게임 종료";
-
+    private static final String EXCEED_INPUT_LENGTH_MESSAGE = "서로 다른 3자리 수를 입력해주세요";
+    private static final String ZERO_NUMBER_MESSAGE = "1부터 9까지의 수를 입력해주세요";
+    private static final String DUPLICATION_NUMBER_MESSAGE = "중복되지 않는 3자리 수를 입력해주세요";
+    private static final String NOT_NUMBER_INPUT_MESSAGE = "숫자만 입력하세요";
     public void startMessage(){
         System.out.print(START_GAME_MESSAGE);
     }
@@ -33,5 +36,19 @@ public class GameHost {
         if(n==3) {
             System.out.println(STRIKE_THREE_MESSAGE);
         }
+    }
+
+    //예외처리 메세지
+    public void notnumberError(){
+        throw new IllegalArgumentException(NOT_NUMBER_INPUT_MESSAGE);
+    }
+    public void exceedLengthError() {
+        throw new IllegalArgumentException(EXCEED_INPUT_LENGTH_MESSAGE);
+    }
+    public void zeronumberError(){
+        throw new IllegalArgumentException(ZERO_NUMBER_MESSAGE);
+    }
+    public void duplicationError(){
+        throw new IllegalArgumentException(DUPLICATION_NUMBER_MESSAGE);
     }
 }
